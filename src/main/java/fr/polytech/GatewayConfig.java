@@ -15,9 +15,11 @@ public class GatewayConfig {
                 .route("user-route", r -> r
                         .path("/api/v1/users/**") // Le chemin de la requête à matcher
                         .uri("lb://offers-api") // L'URI de destination du service
-//                        .uri("http://offers-api:8080/api/v1/users") // L'URI de destination du service
                 )
-                // TODO Ajoutez d'autres routes
+                .route("address-route", r -> r
+                        .path("/api/v1/address/**") // Le chemin de la requête à matcher
+                        .uri("lb://address-api") // L'URI de destination du service
+                )
                 .build();
     }
 
