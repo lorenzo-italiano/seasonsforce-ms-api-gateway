@@ -20,6 +20,10 @@ public class GatewayConfig {
                         .path("/api/v1/address/**") // Le chemin de la requête à matcher
                         .uri("lb://address-api") // L'URI de destination du service
                 )
+                .route("company-route", r -> r
+                        .path("/api/v1/company/**") // Le chemin de la requête à matcher
+                        .uri("lb://company-api") // L'URI de destination du service
+                )
                 .build();
     }
 
