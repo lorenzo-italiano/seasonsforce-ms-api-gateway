@@ -14,7 +14,7 @@ public class GatewayConfig {
                 //TODO fix api route and then this route
                 .route("user-route", r -> r
                         .path("/api/v1/users/**") // Le chemin de la requête à matcher
-                        .uri("lb://offers-api") // L'URI de destination du service
+                        .uri("lb://offer-api") // L'URI de destination du service
                 )
                 .route("address-route", r -> r
                         .path("/api/v1/address/**") // Le chemin de la requête à matcher
