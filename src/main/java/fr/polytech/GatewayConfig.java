@@ -30,6 +30,11 @@ public class GatewayConfig {
                         .path("/api/v1/company/**") // Le chemin de la requête à matcher
                         .uri("lb://company-api") // L'URI de destination du service
                 )
+                .route("company-files-route", r -> r
+                        .path("/api/v1/company-files/{param1}/{param2}")
+                        .filters(f -> f.rewritePath("/api/v1/company-files/(?<param1>.*)/(?<param2>.*)", "/${param1}/${param2}"))
+                        .uri("http://company-minio:9000")
+                )
                 .build();
     }
 
