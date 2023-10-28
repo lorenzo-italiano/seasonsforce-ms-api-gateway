@@ -32,6 +32,10 @@ public class GatewayConfig {
                         .path("/api/v1/company/**") // Path of the request to match
                         .uri("lb://company-api") // Destination URI of the service
                 )
+                .route("job-category-route", r -> r
+                        .path("/api/v1/job-category/**") // Path of the request to match
+                        .uri("lb://offer-api") // Destination URI of the service
+                )
                 .route("company-files-route", r -> r
                         .path("/api/v1/company-files/{param1}/{param2}")
                         .filters(f -> f.rewritePath("/api/v1/company-files/(?<param1>.*)/(?<param2>.*)", "/${param1}/${param2}"))
