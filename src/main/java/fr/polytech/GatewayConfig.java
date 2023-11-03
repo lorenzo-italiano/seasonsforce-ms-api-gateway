@@ -41,6 +41,18 @@ public class GatewayConfig {
                         .filters(f -> f.rewritePath("/api/v1/company-files/(?<param1>.*)/(?<param2>.*)", "/${param1}/${param2}"))
                         .uri("http://company-minio:9000")
                 )
+                .route("availability-route", r -> r
+                        .path("/api/v1/availability/**") // Path of the request to match
+                        .uri("lb://availability-api") // Destination URI of the service
+                )
+                .route("reference-route", r -> r
+                        .path("/api/v1/reference/**") // Path of the request to match
+                        .uri("lb://reference-api") // Destination URI of the service
+                )
+                .route("experience-route", r -> r
+                        .path("/api/v1/experience/**") // Path of the request to match
+                        .uri("lb://experience-api") // Destination URI of the service
+                )
                 .build();
     }
 
