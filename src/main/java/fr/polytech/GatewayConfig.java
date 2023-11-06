@@ -32,6 +32,10 @@ public class GatewayConfig {
                         .path("/api/v1/company/**") // Path of the request to match
                         .uri("lb://company-api") // Destination URI of the service
                 )
+                .route("invoice-route", r -> r
+                        .path("/api/v1/invoice/**") // Path of the request to match
+                        .uri("lb://invoice-api") // Destination URI of the service
+                )
                 .route("job-category-route", r -> r
                         .path("/api/v1/job-category/**") // Path of the request to match
                         .uri("lb://offer-api") // Destination URI of the service
@@ -40,6 +44,11 @@ public class GatewayConfig {
                         .path("/api/v1/company-files/{param1}/{param2}")
                         .filters(f -> f.rewritePath("/api/v1/company-files/(?<param1>.*)/(?<param2>.*)", "/${param1}/${param2}"))
                         .uri("http://company-minio:9000")
+                )
+                .route("invoice-files-route", r -> r
+                        .path("/api/v1/invoice-files/{param1}/{param2}")
+                        .filters(f -> f.rewritePath("/api/v1/invoice-files/(?<param1>.*)/(?<param2>.*)", "/${param1}/${param2}"))
+                        .uri("http://invoice-minio:9000")
                 )
                 .route("availability-route", r -> r
                         .path("/api/v1/availability/**") // Path of the request to match
