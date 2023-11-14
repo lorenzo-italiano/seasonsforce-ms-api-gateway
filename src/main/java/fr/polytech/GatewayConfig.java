@@ -70,6 +70,10 @@ public class GatewayConfig {
                         .path("/api/v1/plan/**") // Path of the request to match
                         .uri("lb://payment-api") // Destination URI of the service
                 )
+                .route("review-route", r -> r
+                        .path("/api/v1/review/**") // Path of the request to match
+                        .uri("lb://review-api") // Destination URI of the service
+                )
                 .build();
     }
 
