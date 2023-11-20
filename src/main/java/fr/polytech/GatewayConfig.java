@@ -74,6 +74,10 @@ public class GatewayConfig {
                         .path("/api/v1/review/**") // Path of the request to match
                         .uri("lb://review-api") // Destination URI of the service
                 )
+                .route("notification-route", r -> r
+                        .path("/api/v1/notification/**") // Path of the request to match
+                        .uri("lb://notification-api") // Destination URI of the service
+                )
                 .build();
     }
 
