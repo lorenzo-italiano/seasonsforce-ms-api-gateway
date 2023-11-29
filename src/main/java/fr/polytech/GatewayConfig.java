@@ -8,16 +8,77 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GatewayConfig {
 
+    /**
+     * Configure the routes of the gateway
+     *
+     * @param builder RouteLocatorBuilder object to build the routes
+     * @return RouteLocator object containing the routes
+     */
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                //TODO fix api route and then this route
                 .route("user-route", r -> r
-                        .path("/api/v1/users/**") // Le chemin de la requête à matcher
-                        .uri("lb://offers-api") // L'URI de destination du service
-//                        .uri("http://offers-api:8080/api/v1/users") // L'URI de destination du service
+                        .path("/api/v1/user/**") // Path of the request to match
+                        .uri("lb://user-api") // Destination URI of the service
                 )
-                // TODO Ajoutez d'autres routes
+                .route("offer-route", r -> r
+                        .path("/api/v1/offer/**") // Path of the request to match
+                        .uri("lb://offer-api") // Destination URI of the service
+                )
+                .route("address-route", r -> r
+                        .path("/api/v1/address/**") // Path of the request to match
+                        .uri("lb://address-api") // Destination URI of the service
+                )
+                .route("company-route", r -> r
+                        .path("/api/v1/company/**") // Path of the request to match
+                        .uri("lb://company-api") // Destination URI of the service
+                )
+                .route("invoice-route", r -> r
+                        .path("/api/v1/invoice/**") // Path of the request to match
+                        .uri("lb://invoice-api") // Destination URI of the service
+                )
+                .route("job-category-route", r -> r
+                        .path("/api/v1/job-category/**") // Path of the request to match
+                        .uri("lb://offer-api") // Destination URI of the service
+                )
+                .route("company-files-route", r -> r
+                        .path("/api/v1/company-files/{param1}/{param2}")
+                        .filters(f -> f.rewritePath("/api/v1/company-files/(?<param1>.*)/(?<param2>.*)", "/${param1}/${param2}"))
+                        .uri("http://company-minio:9000")
+                )
+                .route("invoice-files-route", r -> r
+                        .path("/api/v1/invoice-files/{param1}/{param2}")
+                        .filters(f -> f.rewritePath("/api/v1/invoice-files/(?<param1>.*)/(?<param2>.*)", "/${param1}/${param2}"))
+                        .uri("http://invoice-minio:9000")
+                )
+                .route("availability-route", r -> r
+                        .path("/api/v1/availability/**") // Path of the request to match
+                        .uri("lb://availability-api") // Destination URI of the service
+                )
+                .route("reference-route", r -> r
+                        .path("/api/v1/reference/**") // Path of the request to match
+                        .uri("lb://reference-api") // Destination URI of the service
+                )
+                .route("experience-route", r -> r
+                        .path("/api/v1/experience/**") // Path of the request to match
+                        .uri("lb://experience-api") // Destination URI of the service
+                )
+                .route("payment-route", r -> r
+                        .path("/api/v1/payment/**") // Path of the request to match
+                        .uri("lb://payment-api") // Destination URI of the service
+                )
+                .route("plan-route", r -> r
+                        .path("/api/v1/plan/**") // Path of the request to match
+                        .uri("lb://payment-api") // Destination URI of the service
+                )
+                .route("review-route", r -> r
+                        .path("/api/v1/review/**") // Path of the request to match
+                        .uri("lb://review-api") // Destination URI of the service
+                )
+                .route("notification-route", r -> r
+                        .path("/api/v1/notification/**") // Path of the request to match
+                        .uri("lb://notification-api") // Destination URI of the service
+                )
                 .build();
     }
 
