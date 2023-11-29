@@ -10,6 +10,7 @@ public class GatewayConfig {
 
     /**
      * Configure the routes of the gateway
+     *
      * @param builder RouteLocatorBuilder object to build the routes
      * @return RouteLocator object containing the routes
      */

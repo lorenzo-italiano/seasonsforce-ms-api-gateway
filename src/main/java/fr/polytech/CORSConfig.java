@@ -10,6 +10,11 @@ import org.springframework.web.util.pattern.PathPatternParser;
 @Configuration
 public class CORSConfig {
 
+    /**
+     * Configure the CORS filter to allow requests from the Expo app
+     *
+     * @return CorsWebFilter object to be used by Spring Security
+     */
     @Bean
     public CorsWebFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
