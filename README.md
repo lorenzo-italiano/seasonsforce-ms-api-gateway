@@ -1,5 +1,8 @@
 # API Gateway 
 ##### for SeasonsForce Project
+<a target="_blank" href="https://github.com/lorenzo-italiano/Seasonsforce">
+  <img alt="github link" src="https://img.shields.io/badge/SEASONFORCE-global-green?logo=github&style=for-the-badge">
+</a>
 
 ## Description
 This is the API Gateway for the SeasonsForce project. It is a Spring Boot application that uses the Spring Cloud Gateway library to route requests to the appropriate microservice. It also uses the Eureka library to register itself as a service with the Eureka server. This allows the api gateway to discover the other microservices and route requests to them.
